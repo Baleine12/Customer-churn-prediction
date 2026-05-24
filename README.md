@@ -1,6 +1,6 @@
 ## Résultats et interprétation
 
-Ce projet porte sur une problématique classique en data science, prédire le départ des clients appelé churn.
+## Ce projet porte sur une problématique classique en data science, prédire le départ des clients appelé churn.
 
 L’objectif est d’identifier les clients qui risquent de quitter l’entreprise à partir de plusieurs informations comme l’ancienneté, le montant payé chaque mois, le score de satisfaction, le nombre d’appels au support et le type de contrat.
 
