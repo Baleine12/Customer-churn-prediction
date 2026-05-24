@@ -16,10 +16,9 @@ from sklearn.metrics import (
     RocCurveDisplay
 )
 
-# 1. Génération d'une base client simulée
+# 1- Génération d'une base client simulée
 
 np.random.seed(42)
-
 n = 2000
 
 data = pd.DataFrame({
@@ -36,7 +35,7 @@ data = pd.DataFrame({
     )
 })
 
-# Encodage du type de contrat
+#type de contrat
 data["contrat_mensuel"] = (data["type_contrat"] == "mensuel").astype(int)
 data["contrat_un_an"] = (data["type_contrat"] == "un_an").astype(int)
 data["contrat_deux_ans"] = (data["type_contrat"] == "deux_ans").astype(int)
@@ -65,7 +64,7 @@ print(" Taux de churn :")
 print(data["churn"].value_counts(normalize=True))
 
 
-# 2. Analyse descriptive
+# 2- Analyse descriptive
 
 print(" Statistiques descriptives :")
 print(data.describe())
@@ -101,9 +100,7 @@ plt.savefig("outputs/figures/support_calls_by_churn.png")
 plt.close()
 
 
-# ==============================
-# 3. Préparation des variables
-# ==============================
+# 3- Préparation des variables
 
 features = [
     "age",
@@ -133,9 +130,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 
-# ==============================
-# 4. Modèle 1 : Régression logistique
-# ==============================
+# 4- Modèle 1 : Régression logistique
 
 logit_model = LogisticRegression(max_iter=1000, class_weight="balanced")
 logit_model.fit(X_train_scaled, y_train)
@@ -180,13 +175,11 @@ print(confusion_matrix(y_test, y_pred_rf))
 
 # 6. Visualisations des modèles
 
-
 RocCurveDisplay.from_predictions(
     y_test,
     y_proba_logit,
     name="Régression logistique"
 )
-
 RocCurveDisplay.from_predictions(
     y_test,
     y_proba_rf,
@@ -197,7 +190,6 @@ plt.title("Comparaison des courbes ROC")
 plt.tight_layout()
 plt.savefig("outputs/figures/roc_curve_comparison.png")
 plt.close()
-
 importance = pd.DataFrame({
     "variable": features,
     "importance": rf_model.feature_importances_
