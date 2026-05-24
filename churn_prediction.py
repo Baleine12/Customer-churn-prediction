@@ -207,5 +207,3 @@ plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.savefig("outputs/figures/feature_importance.png")
 plt.close()
-
-print("\nProjet terminé avec succès.")
