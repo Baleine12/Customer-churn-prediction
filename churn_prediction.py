@@ -16,7 +16,7 @@ from sklearn.metrics import (
     RocCurveDisplay
 )
 
-# 1- Génération d'une base client simulée
+# Génération d'une base client simulée
 
 np.random.seed(42)
 n = 2000
@@ -64,7 +64,7 @@ print(" Taux de churn :")
 print(data["churn"].value_counts(normalize=True))
 
 
-# 2- Analyse descriptive
+# Analyse descriptive
 
 print(" Statistiques descriptives :")
 print(data.describe())
@@ -100,7 +100,7 @@ plt.savefig("outputs/figures/support_calls_by_churn.png")
 plt.close()
 
 
-# 3- Préparation des variables
+# Préparation des variables
 
 features = [
     "age",
@@ -130,7 +130,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 
-# 4- Modèle 1 : Régression logistique
+# Modèle 1 : Régression logistique
 
 logit_model = LogisticRegression(max_iter=1000, class_weight="balanced")
 logit_model.fit(X_train_scaled, y_train)
@@ -148,7 +148,7 @@ print("Matrice de confusion :")
 print(confusion_matrix(y_test, y_pred_logit))
 
 
-# 5. Modèle 2 : Random Forest
+# Modèle 2 : Random Forest
 
 
 rf_model = RandomForestClassifier(
@@ -173,7 +173,7 @@ print("Matrice de confusion :")
 print(confusion_matrix(y_test, y_pred_rf))
 
 
-# 6. Visualisations des modèles
+# Visualisations des modèles
 
 RocCurveDisplay.from_predictions(
     y_test,
